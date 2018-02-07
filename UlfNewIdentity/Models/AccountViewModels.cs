@@ -48,10 +48,16 @@ namespace UlfNewIdentity.Models
 
     public class LoginViewModel
     {
+        //Ulf change here Email to Username to separait between email and username
+
+        //[Required]
+        //[Display(Name = "Email")]
+        //[EmailAddress]
+        //public string Email { get; set; }
+        // and go down to register to add 
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Username")]
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +70,26 @@ namespace UlfNewIdentity.Models
 
     public class RegisterViewModel
     {
+        //Ulf add here user name to register 
+        [Required]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+        //Ulf end add  username
+        //we add here becuse we have annotations as requered
+        [Required]
+        [Display(Name = "First Name")]
+        [StringLength(40, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
+        public string FirstName { get; set; }
+        //we add
+        [Required]
+        [Display(Name = "Last Name")]
+        [StringLength(40, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
+        public string LastName { get; set; }
+        //we add
+        [Required]
+        [Range(minimum:0,maximum:150)]
+        public int Age { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

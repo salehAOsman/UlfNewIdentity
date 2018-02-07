@@ -75,7 +75,8 @@ namespace UlfNewIdentity.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //Ulf change email to username
+            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -115,11 +116,12 @@ namespace UlfNewIdentity.Controllers
             {
                 return View(model);
             }
-
+            //*2  we come from Configuration seed 
             // The following code protects for brute force attacks against the two factor codes. 
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
+            //we modify here new proprties as 
             var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
@@ -151,7 +153,8 @@ namespace UlfNewIdentity.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                //*Ulf change model.email to model.Username
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email,Age=model.Age,FirstName=model.FirstName,LastName=model.LastName};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
