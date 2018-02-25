@@ -90,6 +90,8 @@ namespace UlfNewIdentity.Models
         [Range(minimum:0,maximum:150)]
         public int Age { get; set; }
 
+        public string Adress { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

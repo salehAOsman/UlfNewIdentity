@@ -154,7 +154,7 @@ namespace UlfNewIdentity.Controllers
             if (ModelState.IsValid)
             {
                 //*Ulf change model.email to model.Username
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Email,Age=model.Age,FirstName=model.FirstName,LastName=model.LastName};
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email,Age=model.Age,FirstName=model.FirstName,LastName=model.LastName,Adress=model.Adress};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
